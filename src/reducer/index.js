@@ -28,7 +28,7 @@ const productReducer = (state = initialState, action) => {
         case SORT_BY:
             const newArr = state.products.slice()
             console.log(action.payload);
-            
+
             newArr.sort((a, b) => {
                 return a[action.payload] > b[action.payload] ? 1 : -1;
             })
@@ -49,18 +49,11 @@ const productReducer = (state = initialState, action) => {
         case CREATE_ITEM:
             return { ...state, selectedItem: null }
         case ITEM_CLIKED:
-            return { ...state,selectedItem: null }
+            return { ...state, selectedItem: null }
         default:
             return state;
     }
 }
-
-// const selectedItem = (state = [], action) => {
-//     switch (action.type) {
-//         default:
-//             return state;
-//     }
-// }
 
 const correntPosts = (state = [], action) => {
     switch (action.type) {

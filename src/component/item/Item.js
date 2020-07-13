@@ -7,58 +7,25 @@ import itemClked from '../../action/itemCliked.action'
 
 const Item = (props, { correntPost }) => {
     const [isActive, setIsActive] = useState(false)
-    const [singelProduct, setSingelProduct] = useState()
-    const [id, setid] = useState();
-    //     const clickItem = () => {
-    //         props.selectItem()
-    //         // if (!isActive) {
-    //         //     event.target.style.backgroundColor = "grey"
-    //         //     setIsActive(true)
-    //         // } else if (isActive) {
-    //         //     event.target.style.backgroundColor = "white"
-    //         //     setIsActive(false)
-    //         // }
-    //     }
+    // const [singelProduct, setSingelProduct] = useState()
+    const [active, setactive] = useState();
+   
     const deletea = (e) => {
         e.stopPropagation()
         props.deleteProduct(e.currentTarget.dataset.by)
     }
     const ProductChange = (event) => {
-        // props.itemClked(event.currentTarget.dataset.index)
-        // if (props.selectedItem   && props.selectedItem[0].index === event.currentTarget.dataset.index ) {
-        //     event.currentTarget.className = "itemCliked"
-        // }
-        // if (!isActive) {
-        //     setIsActive(true)
-        // }else if (props.selectedItem && event.currentTarget.dataset.by== props.selectedItem[0].index &&isActive) {
-        //     setIsActive(false)
-        // }
-        // props.selectItem(event.currentTarget.dataset.by)
-        // setSingelProduct(event.currentTarget.dataset.by.toString())
-        setSingelProduct(event.currentTarget.dataset.by)
-        setid(event.currentTarget.dataset.index)
-
-        // if (singelProduct == event.currentTarget.dataset.by && !isActive) {
-        //     event.currentTarget.className = "itemCliked"
-        //     setIsActive(true)
-        // } else if (singelProduct == event.currentTarget.dataset.by && isActive) {
-        //     event.currentTarget.className = "oneItem"
-        //     setIsActive(false)
-        // }
+        setactive(active === event.currentTarget.dataset.index ? '' : event.currentTarget.dataset.index)
+        // setSingelProduct(event.currentTarget.dataset.by)
         const singel = props.products.slice().filter(i => i.name == event.currentTarget.dataset.by)
         props.selectItem(singel);
         const activeREsult = !isActive;
-        // setIsActive(activeREsult);
-        // if (isActive) {
-        //     props.itemClked()
-        // }
+        setIsActive(activeREsult);
     }
     return (
         <div>
             {props.correntPost.map((product, index) => (
-                // <div className={`oneItem container ${isActive && props.selectedItem && props.selectedItem[0].index === product.index ? 'selected' : ''}`} data-index={product.index}
-                <div className={`oneItem container ${props.selectedItem && props.selectedItem[0].index === product.index ? 'selected' : ''}`} data-index={product.index}
-
+                <div className={`oneItem container ${active == product.index && props.selectedItem && props.selectedItem[0].index === product.index ? 'selected' : ''}`} data-index={product.index}
                     data-by={product.name} onClick={ProductChange} key={index}>
                     {/* <div>
                         <p>{product.img}</p>
