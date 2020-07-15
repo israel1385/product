@@ -27,8 +27,6 @@ const productReducer = (state = initialState, action) => {
             return result;
         case SORT_BY:
             const newArr = state.products.slice()
-            console.log(action.payload);
-
             newArr.sort((a, b) => {
                 return a[action.payload] > b[action.payload] ? 1 : -1;
             })
